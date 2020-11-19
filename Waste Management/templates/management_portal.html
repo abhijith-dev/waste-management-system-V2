@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        *{
+          font-weight: 600;
+        }
+        body{
+            background: url("{{ url_for('static', filename='img/bg5.jpg') }}");
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: cover;
+            background-attachment: fixed;
+        }
+     .container{
+         background: #0001;
+         width: 100%;
+         height:150px;
+
+     }  
+    .container ul li{
+          text-decoration: none;
+          display:flex;
+          padding-top: 2%;
+          font-size: medium;
+          font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+      }
+      
+    .container  ul li:last-child{
+        padding-left: 85%;
+        
+       
+      }
+    #logout-button{
+        display:inline-block;
+        position: sticky;
+    }  
+    #logout-button:hover::after{
+       content:"?...";
+    }
+    #sli1{
+        display:flex;  
+        position: relative;
+    }
+    #sli2{
+        display:flex;  
+        position: relative;
+    }
+    #sbtn1{
+        height:30px;
+        width: 125px;      
+        border-radius: 7px;
+        background-color: #0001;
+        border-color: black;
+        font-weight: bold;  
+    }
+    #sbtn1:hover{
+        height:30px;
+        width: 130px; 
+        border-radius: 7px;
+        background-color:black;
+        border-color: white;
+        color: white;
+        font-weight: bold;
+        transition: all 0.5s ease-in-out;
+ }
+ #sbtn2{
+    height:30px;
+    width: 125px;      
+    border-radius: 7px;
+    background-color: #0001;
+    border-color: black;
+    font-weight: bold;  
+}
+#sbtn2:hover{
+    height:30px;
+    width: 130px; 
+    border-radius: 7px;
+    background-color:black;
+    border-color: white;
+    color: white;
+    font-weight: bold;
+    transition: all 0.5s ease-in-out;
+}
+ #sul li:last-child{
+    margin-top: -2.5%;
+    margin-left: 86%;
+}
+
+ #sul li:first-child{
+    margin-left: 88%;
+    margin-top: 2%;
+
+}
+    nav{
+        position: fixed;
+        background-color:#0008;
+        width: 100%;
+        height: 60px;
+    }
+    nav ul li{
+        display:flex;
+    }
+    nav ul li{
+        position: relative;
+    }
+    nav ul li:last-child{
+        margin-top: -1%;
+        margin-left: 89%;
+    }
+
+    nav ul li:first-child{
+        margin-left: 45%;
+        font-weight: 600;
+        font-size: large;
+        font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    }
+    button{
+           height:25px;
+           width: 75px;      
+           border-radius: 7px;
+           background-color: #0001;
+           border-color: black;
+           font-weight: bold;
+    }
+    button:hover{
+           height:28px;
+           width: 80px; 
+           border-radius: 7px;
+           background-color:black;
+           border-color: white;
+           color: white;
+           font-weight: bold;
+           transition: all 0.5s ease-in-out;
+    }
+    input[type=submit]{
+        height:35px;
+        width: 150px;      
+        border-radius: 7px;
+        background-color: #0001;
+        border-color: black;
+        font-weight: bold;
+ }
+ input[type=submit]:hover{
+        height:40px;
+        width: 160px; 
+        border-radius: 7px;
+        background-color:black;
+        border-color: white;
+        color: white;
+        font-weight: bold;
+        transition: all 0.5s ease-in-out;
+ }
+    </style>
+</head>
+<body>
+   
+      <nav>
+          <ul>
+            <li> Case Information</li>
+            <li>  <a href="/logout"><button id="logout-button">Logout</button></a>   </li>
+          </ul>
+      </nav>
+    <br><br><br>
+
+    <br>
+     
+   {%for i in range(1,length+1)%}
+   <div class="container">
+      <ul>
+          <li>Case Number {{i}}</li>
+          <li>Place : {{cases[i-1][7]}}</li>
+          <li>
+            <form action="/details" method="POST">
+                <input type="hidden" value="{{cases[i-1][0]}}" name="name">
+                <input type="hidden" value="{{cases[i-1][1]}}" name="email" >
+                <input type="hidden" value="{{cases[i-1][2]}}" name="phno" >
+                <input type="hidden" value="{{cases[i-1][4]}}" name="area" >
+                <input type="hidden" value="{{cases[i-1][5]}}" name="address">
+                <input type="hidden" value="{{cases[i-1][6]}}" name="place">
+                <input type="hidden" value="{{cases[i-1][7]}}" name="city">
+                <input type="hidden" value="{{cases[i-1][8]}}" name="pin">
+                <input type="hidden" value="{{cases[i-1][9]}}" name="landmark">
+                <input type="hidden" value="{{cases[i-1][10]}}" name="situation">
+                <input type="submit" value="View Details">
+            </form>
+          </li>
+      </ul>
+   </div>
+   <br>
+   {%endfor%}
+   
+
+   
+</body>
+</html>

@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>complaint|portal</title>
+   
+    <script>
+        function setMla(){
+            MLAs={
+                UDUPI:"RAGUPATHI BHAT",
+                KARKALA:"SUNIL KUMAR",
+                KAUP:"LALAJI R MENDON"
+            }
+            var area=document .getElementById('area').value;
+            var mla=MLAs[area]
+            document.getElementById('mla').value=mla;
+            
+        }
+    </script>
+    <style>
+        #btn{
+            height:30px;
+            width: 72px;
+            margin-left: 575px; 
+            border-radius: 7px;
+            background-color: #0001;
+            border-color: black;
+            font-weight: bold;
+            margin-top: 2%;
+            transition: all 1.0s ease;
+          }
+          #btn:hover{
+             height:38px;
+             width: 80px;
+             transition: all 1.0s ease;
+             margin-left: 570px; 
+             border-radius: 7px;
+             background-color:black;
+             color: white;
+             border-color:white ;
+             font-weight: bold;
+             margin-top: 2%;
+           }
+        h1{
+            text-align: center;
+                font-family: Georgia, 'Times New Roman', Times, serif;
+                font-style: italic;
+        }
+        body{
+             background: url("{{ url_for('static', filename='img/bg3.jpg') }}");
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: cover;
+            background-attachment: fixed;
+        }
+        .col-1{
+            float: left;
+            margin-left:5%;
+            width: 530px;
+            background-color: #0001;
+            height: 400px;
+        }
+        .col-2{
+            float: right;
+            margin-right: 5%;
+            width: 530px;
+            background-color: #0001;
+            height: 400px;
+        }
+        .name{
+           width:300px;
+           height: 30px;
+           border-color: black;
+           border-radius: 7px;
+           background-color: #0001;
+        }
+        .form-1{
+            padding-top: 7%;
+            padding-left:10% ;
+        }
+        .form-2{
+            padding-top: 3%;
+            padding-left:10% ;
+        }
+        #mla{
+
+            color: black;
+        }
+        #address{
+        margin: 0px; 
+        width: 300px;
+        height: 64px;
+        overflow: visible;
+        resize: none;
+        border-width: 2px;
+        }
+        #area{
+            border-width: 2px;
+            width: 307px;
+            height: 35px;
+        }
+        #optional{
+            font-style: italic;
+            font-weight: bold;
+        }
+       input::placeholder{
+            font-style: italic;
+           
+            color: black;
+        }
+        textarea::placeholder{
+            font-style: italic;
+           
+            color: black;
+        }
+        p{
+            font-family: Georgia, 'Times New Roman', Times, serif;
+            font-weight: bold;
+            font-style: italic;
+            margin-left:5%;
+            font-size: 0.7rem;
+        }
+        #target{
+            font-family: Georgia, 'Times New Roman', Times, serif;
+            font-weight: bold;
+            font-style: italic;
+            margin-left:5%;
+            font-size: 1.1rem;  
+        }
+    </style>
+</head>
+<body>
+   <div style="text-align: center;">
+    <h1>COMPLAINT PORTAL</h1>
+    </div>
+    <p>user can give complaint here,the given complaint verfied and solved by District management
+        under respected ministers.Please enter your valid deltails as well as vaid information
+        about</p><p> target place(target place is which has large amount waste(garbage) that need to be vanished) 
+    </p>
+   
+   <form action="/request" method="POST">
+       <div class="col-1">
+       <div class="form-1">
+        <input type="text" class="name" name="name" autocomplete="off" placeholder="Enter your name" required>
+        <br><br>
+        <input type="email" class="name" name="email" autocomplete="off" placeholder="Enter your email">&nbsp;<span id="optional">(optional)</span>
+        <br><br>
+        <input type="text"class="name" name="phno" autocomplete="off" placeholder="Enter your phone number" required>
+        <br><br>
+       <select onchange="setMla();" class="name" name="area" id="area" required>
+         <option disabled selected>Your Area</option>
+         <option>KARKALA</option>
+         <option>UDUPI</option>
+         <option>KAUP</option>
+       </select>
+     <br><br>
+     <input type="text" name="mla" class="name" id="mla" placeholder="MLA name" disabled>
+     <input type="hidden" name="mla" id="mla">
+    <br><br>
+    <textarea name="address" id="address"  class="name" placeholder="Enter your Address" required></textarea>
+       </div>
+       </div> 
+    <div class="col-2">
+        <p id="target">Target place information</p>
+        <div class="form-2">
+            <input type="text" name="t_place" class="name" placeholder="Enter place name" autocomplete="off" required>
+            <br><br>  
+            <input type="text" name="t_city" class="name" placeholder="Enter city" autocomplete="off" required>
+            <br><br> 
+            <input type="pin" name="t_pin"  maxlength="7" class="name" autocomplete="off" placeholder="Enter pin" required>
+            <br><br>
+            <input type="text" name="t_landmark" class="name" autocomplete="off" placeholder="Enter landmark" required>
+            <br><br>  
+            <select class="name" id="area" name="t_condition" required>
+                <option disabled selected>Target Condition</option>
+                <option>LOW</option>
+                <option>MEDIUM</option>
+                <option>HIGH</option>
+              </select>
+            <br><br>
+            <input type="text" name="ext" class="name" value="UDUPI,KARNATAKA" disabled>
+            <br><br>  
+            
+        </div>
+        
+    </div> 
+    
+    <input id="btn" type="submit" value="SUBMIT">  
+   </form>
+</body>
+</html>

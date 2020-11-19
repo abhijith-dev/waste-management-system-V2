@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Management|Login</title>
+    <style>
+        body{
+            background: url("https://cdn.stocksnap.io/img-thumbs/960w/marsh-wetland_ZSIWFPYKHQ.jpg");
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: cover;
+            background-attachment: fixed;
+        }
+        h1{
+            text-align: center;
+            font-family: Georgia, 'Times New Roman', Times, serif;
+            font-style: italic;
+        }
+        .container{
+            width: 600px;
+            height: 500px;
+            
+            margin-left: 25%;
+            background: #0001;
+        }
+        form{
+            padding-left: 30%;
+            padding-top: 5%;
+        }
+        .name{
+           width:300px;
+           height: 30px;
+           border-color: black;
+           border-radius: 7px;
+           background-color: #0001;
+        }
+        .area{
+            width:305px;
+            height: 35px;
+            border-color: black;
+            border-radius: 7px;
+            border-width: 2px;
+            background-color: #0001; 
+        }
+        .password{
+            width:300px;
+            height: 30px;
+            border-color: black;
+            border-radius: 7px;
+            background-color: #0001;
+        }
+    
+        #btn{
+           height:30px;
+           width: 72px;
+           margin-left: 107px; 
+           border-radius: 7px;
+           background-color: #0001;
+           border-color: black;
+           font-weight: bold;
+         }
+         #btn:hover{
+            height:30px;
+            width: 72px;
+            margin-left: 107px; 
+            border-radius: 7px;
+            background-color:black;
+            color: white;
+            border-color:white ;
+            font-weight: bold;
+          }
+         
+         #message{
+             color: red;
+             font-weight: bold;
+             margin-left: 50px;
+         }
+         input::placeholder { color:black; font-size: 1em; font-style: italic; }
+         option {
+           color:black; font-size: 1em; font-style: italic; 
+         }
+    </style>
+    <script>
+        function checker(){
+        var fp=document.getElementById('fp').value;
+        var sp=document.getElementById('sp').value;
+        if(fp===sp){
+            return true;
+        }
+        else{
+            document.getElementById('message').innerHTML="password is not matching..";
+            return false;
+        } 
+        }
+    </script>
+</head>
+<body>
+    <h1>MANAGEMENT SIGN UP</h1>
+    <div class="container">
+        <form onsubmit="return checker();" action="/signup"  method="POST">
+            <input type="text" name="name"  class="name" placeholder="Enter Name" required>
+            <br><br>
+            <input type="email" name="email"  class="name" placeholder="Enter email" required>
+            <br><br>
+            <input type="text" name="phno"  class="name" placeholder="Enter phone number" required>
+            <br><br>
+            <select name="area" class="area">
+                <option   disabled selected>Choose Your Area</option>
+                {% for area in areas %}
+                <option>{{area}}</option>
+                {%endfor%} 
+            </select>
+            <br><br>
+            <input type="password" name="_id"  class="name" placeholder="Enter MLA ID" required>
+            
+            <br><small style="font-style: italic;font-weight:bold">*this id given by government</small><br>
+            <br>
+            <input type="password" id="fp" name="fpassword"  class="name" placeholder="Enter password" required>
+            <br><br>
+            <input type="password" id="sp" class="password" name="password" placeholder="confirm Password" required>
+            <br>
+            <span id="message" style="color: red ;font-weight:bold;font-style:italic;font-size:1.0rem"> </span>
+            <small style="color: red ;font-weight:bold;font-style:italic;font-size:1.0rem">{{message}}</small>
+            <br>
+            <br>
+            <input type="submit" id="btn" value="Register">
+            <br>  
+            <br><br>
+           
+        </form>
+    </div>
+    
+</body>
+</html>
